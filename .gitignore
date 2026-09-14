@@ -1,9 +1,10 @@
 # Dependencies
 node_modules/
-.claude
-
+.claude 
 # macOS
 .DS_Store
+
+dev.js
 
 # Logs
 *.log

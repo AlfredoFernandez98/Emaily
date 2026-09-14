@@ -10,10 +10,20 @@
     "node": ">=22"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
-  
   "dependencies": {
-    "express": "^5.2.1"
+    "cookie-session": "^2.1.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.9.4",
+    "nodemon": "^3.1.14",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0"
+  },
+  "devDependencies": {
+    "prettier": "3.9.6"
   }
 }
