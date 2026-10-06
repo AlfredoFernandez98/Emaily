@@ -35,8 +35,9 @@ passport.use(
       // 1a. Credentials from Google API console, kept out of source control.
       clientID: keys.GoogleClientID,
       clientSecret: keys.GoogleClientSecret,
-      // 1b. Redirect target. Must match the Google console entry exactly.
       callbackURL: '/auth/google/callback',
+ 
+      proxy: true,
     },
     // 1c. Runs after Google redirects back. Maps their profile to our record.
     // Tokens unused: we call no other Google APIs.

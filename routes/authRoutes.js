@@ -21,8 +21,8 @@ module.exports = (app) => {
             if(err){
                 return next(err);
             }
+            console.log('User logged out successfully');
             res.redirect('/');
-            printf("User logged out successfully");
         });
     })
 
