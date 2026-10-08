@@ -1,13 +1,15 @@
 # Emaily
 
-Google OAuth login built on Express, Passport, and MongoDB.
+A learning project: Google login with Express, Passport and MongoDB, plus a
+React client.
 
 Live: https://emaily-39ar.onrender.com
 
 ## Stack
 
-Express 5, Passport (`passport-google-oauth20`), Mongoose, `cookie-session`.
-Deployed on Render from `main`.
+- Server: Express 5, Passport (`passport-google-oauth20`), Mongoose, `cookie-session`
+- Client: React (Create React App) in `client/`
+- Hosting: Render, deployed from `main`
 
 ## Endpoints
 
@@ -16,25 +18,30 @@ Deployed on Render from `main`.
 - `GET /api/current_user` the logged-in user
 - `GET /api/logout` ends the session
 
-Only the Google ID is stored. The session lives in a signed cookie, so there is
-no session store to run.
+Only the Google ID is stored. The session lives in a signed cookie.
 
 ## Running locally
 
 Requires Node 22 or newer.
 
-```
-npm install
-npm run dev
-```
+1. Install dependencies:
 
-Credentials come from `config/keys.js`. In production it reads environment
-variables; locally it reads `config/dev.js`, which is gitignored. Create that
-file yourself with `GoogleClientID`, `GoogleClientSecret`, `mongodbURI`, and
-`cookieKey`.
+   ```
+   npm install
+   npm install --prefix client
+   ```
 
-Then open http://localhost:5000/auth/google.
+2. Create a `.env` file in the project root (it is gitignored) with these keys:
+   `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `MONGODB_URI`, `COOKIE_KEY`.
 
-## Notes
+3. Start server and client together:
 
-A learning project. No tests and no frontend yet.
+   ```
+   npm run dev
+   ```
+
+4. Open http://localhost:3000. Requests to `/api` and `/auth/google` are
+   forwarded to the server on port 5050 (see `client/src/setupProxy.js`).
+
+The server uses port 5050, not 5000, because macOS AirPlay Receiver holds
+port 5000.

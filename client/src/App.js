@@ -15,7 +15,11 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
+      
           Learn React
+        </a>
+        <a href="/auth/google" className="App-link">
+          Login with Google
         </a>
       </header>
     </div>
