@@ -41,21 +41,19 @@ passport.use(
     },
     // 1c. Runs after Google redirects back. Maps their profile to our record.
     // Tokens unused: we call no other Google APIs.
-    (accessToken, refreshToken, profile, done) => {
+    async(accessToken, refreshToken, profile, done) => {
       
-      // 1d. Check first. Mongo stores duplicate googleId values otherwise.
-      User.findOne({ googleId: profile.id })
-      .then((existingUser) => {
+      
+     const existingUser = await User.findOne({ googleId: profile.id });
+      
         if (existingUser) {
-          // 1e. Returning user. done() hands control to step 2.
-          done(null, existingUser);
-        } else {
-          // 1f. First login. save() is async, so wait before done().
-          return new User({ googleId: profile.id }).save().then(user=> done(null,user));
-        }
-      })
-      // 1g. Any DB failure in 1d or 1f goes to Passport, not to an unhandled rejection.
-      .catch(err => done(err));
-    },
+     
+         return done(null, existingUser);
+        } 
+
+          const user =  await new User({ googleId: profile.id }).save();
+          done(null, user);
+        
+    }
   ),
 );
